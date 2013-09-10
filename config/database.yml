@@ -16,10 +16,11 @@
 #
 development:
   adapter: postgresql
+  host: localhost
   encoding: unicode
-  database: CareerCenterApp_development
+  database: CareerCenterApp_Development
   pool: 5
-  username: CareerCenterApp
+  username: rails
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
