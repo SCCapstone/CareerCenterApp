@@ -33,7 +33,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'rails_12factor', group: :production
 
 # Local Development Server
-gem 'unicorn'
+# gem 'unicorn'
+gem 'thin'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
