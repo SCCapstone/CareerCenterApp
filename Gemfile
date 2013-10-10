@@ -34,7 +34,6 @@ gem 'rails_12factor', group: :production
 
 # Local Development Server
 # gem 'unicorn'
-gem 'thin'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -44,6 +43,11 @@ end
 # for development and testing
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
+  gem 'thin'
+end
+
+group :production do
+	gem 'unicorn'
 end
 
 # Use ActiveModel has_secure_password
