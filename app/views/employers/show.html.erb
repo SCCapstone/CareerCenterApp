@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @employer.name %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @employer.website %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @employer.description %>
+</p>
+
+<p>
+  <strong>Majors:</strong>
+  <%= @employer.majors %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @employer.email %>
+</p>
+
+<p>
+  <strong>Positions:</strong>
+  <%= @employer.positions %>
+</p>
+
+<p>
+  <strong>Tips:</strong>
+  <%= @employer.tips %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @employer.created_at %>
+</p>
+
+<p>
+  <strong>Updated at:</strong>
+  <%= @employer.updated_at %>
+</p>
+
+<p>
+  <strong>Last edit:</strong>
+  <%= @employer.last_edit %>
+</p>
+
+<p>
+  <strong>Table:</strong>
+  <%= @employer.table_id %>
+</p>
+
+<p>
+  <strong>Conference:</strong>
+  <%= @employer.conference_id %>
+</p>
+
+<%= link_to 'Edit', edit_employer_path(@employer) %> |
+<%= link_to 'Back', employers_path %>

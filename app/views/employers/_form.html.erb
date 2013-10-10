@@ -1,0 +1,65 @@
+<%= form_for(@employer) do |f| %>
+  <% if @employer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employer.errors.count, "error") %> prohibited this employer from being saved:</h2>
+
+      <ul>
+      <% @employer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :website %><br>
+    <%= f.text_area :website %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :majors %><br>
+    <%= f.text_area :majors %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :positions %><br>
+    <%= f.text_area :positions %>
+  </div>
+  <div class="field">
+    <%= f.label :tips %><br>
+    <%= f.text_area :tips %>
+  </div>
+  <div class="field">
+    <%= f.label :created_at %><br>
+    <%= f.datetime_select :created_at %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_at %><br>
+    <%= f.datetime_select :updated_at %>
+  </div>
+  <div class="field">
+    <%= f.label :last_edit %><br>
+    <%= f.text_field :last_edit %>
+  </div>
+  <div class="field">
+    <%= f.label :table_id %><br>
+    <%= f.number_field :table_id %>
+  </div>
+  <div class="field">
+    <%= f.label :conference_id %><br>
+    <%= f.number_field :conference_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
