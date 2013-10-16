@@ -1,0 +1,33 @@
+<h1>Listing tables</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Num</th>
+      <th>Conference</th>
+      <th>Employer</th>
+      <th>Last edit</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tables.each do |table| %>
+      <tr>
+        <td><%= table.num %></td>
+        <td><%= table.conference_id %></td>
+        <td><%= table.employer_id %></td>
+        <td><%= table.last_edit %></td>
+        <td><%= link_to 'Show', table %></td>
+        <td><%= link_to 'Edit', edit_table_path(table) %></td>
+        <td><%= link_to 'Destroy', table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Table', new_table_path %>

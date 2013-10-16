@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Num:</strong>
+  <%= @table.num %>
+</p>
+
+<p>
+  <strong>Conference:</strong>
+  <%= @table.conference_id %>
+</p>
+
+<p>
+  <strong>Employer:</strong>
+  <%= @table.employer_id %>
+</p>
+
+<p>
+  <strong>Last edit:</strong>
+  <%= @table.last_edit %>
+</p>
+
+<%= link_to 'Edit', edit_table_path(@table) %> |
+<%= link_to 'Back', tables_path %>
