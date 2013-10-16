@@ -1,4 +1,6 @@
 CareerCenterApp::Application.routes.draw do
+  resources :users
+
   resources :messages
 
   resources :conferences
