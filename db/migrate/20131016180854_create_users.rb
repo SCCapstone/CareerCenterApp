@@ -3,9 +3,9 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :name
       t.string :role
-      t.text :favorites
+      t.text :favorites, array: true 
       t.string :source
-      t.hstore :token
+      t.text :token
       t.string :email
 
       t.timestamps
