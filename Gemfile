@@ -44,12 +44,12 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'thin'
+  gem 'dotenv-rails'
 end
 
 group :production do
 	gem 'unicorn'
 end
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

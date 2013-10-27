@@ -19,8 +19,8 @@ development:
   host: ec2-54-235-86-117.compute-1.amazonaws.com
   port: 5432
   database: d8tp73a9a3v9fu
-  username: cwylwkksdioztz
-  password: CKUcgYNoyQvWpqTOJpXt4ucvHS
+  username: <%= ENV["DB_UN"] %>
+  password: <%= ENV["DB_PW"] %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
