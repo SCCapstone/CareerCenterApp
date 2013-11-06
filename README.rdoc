@@ -1,5 +1,0 @@
-CareerCenter App
-=================
-Date: 11/6/13
-
-Note: Had a javascript error with turbolinks and installed nodejs to fix the issue
