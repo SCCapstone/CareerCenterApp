@@ -4,7 +4,7 @@ class EmployersController < ApplicationController
   # GET /employers
   # GET /employers.json
   def index
-    @employers = Employer.all
+    @employers = Employer.includes(:conference).all
   end
 
   # GET /employers/1
@@ -65,7 +65,7 @@ class EmployersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_employer
-      @employer = Employer.find(params[:id])
+      @employer = Employer.includes(:conference).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
