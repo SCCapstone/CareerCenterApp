@@ -29,15 +29,12 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-# Heroku Helper
-gem 'rails_12factor', group: :production
-
 # Local Development Server
 # gem 'unicorn'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  gem 'sdoc'
 end
 
 # for development and testing
@@ -49,6 +46,8 @@ end
 
 group :production do
 	gem 'unicorn'
+	# Heroku Helper
+	gem 'rails_12factor'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
