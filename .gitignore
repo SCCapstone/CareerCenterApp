@@ -16,3 +16,6 @@
 /tmp
 .env
 .rvmc
+
+# Ignore gemlock file
+Gemfile.lock
