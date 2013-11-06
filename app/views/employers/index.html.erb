@@ -1,6 +1,6 @@
 <h1>Listing employers</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -9,10 +9,6 @@
       <th>Majors</th>
       <th>Email</th>
       <th>Positions</th>
-      <th>Tips</th>
-      <th>Created at</th>
-      <th>Updated at</th>
-      <th>Last edit</th>
       <th>Table</th>
       <th>Conference</th>
       <th></th>
@@ -30,15 +26,11 @@
         <td><%= employer.majors %></td>
         <td><%= employer.email %></td>
         <td><%= employer.positions %></td>
-        <td><%= employer.tips %></td>
-        <td><%= employer.created_at %></td>
-        <td><%= employer.updated_at %></td>
-        <td><%= employer.last_edit %></td>
         <td><%= employer.table_id %></td>
-        <td><%= employer.conference_id %></td>
-        <td><%= link_to 'Show', employer %></td>
-        <td><%= link_to 'Edit', edit_employer_path(employer) %></td>
-        <td><%= link_to 'Destroy', employer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= employer.conference.name %></td>
+        <td><%= link_to 'Show', employer, {class: "btn btn-default"} %></td>
+        <td><%= link_to 'Edit', edit_employer_path(employer), {class: "btn btn-default"}%></td>
+        <td><%= link_to 'Destroy', employer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -46,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Employer', new_employer_path %>
+<%= link_to 'New Employer', new_employer_path , {class: "btn btn-success"}%>
