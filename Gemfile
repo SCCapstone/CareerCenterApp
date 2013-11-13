@@ -32,6 +32,10 @@ gem 'jbuilder', '~> 1.2'
 # Local Development Server
 # gem 'unicorn'
 
+# Google + login support
+gem "ruby-openid"
+gem "rack-openid"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc'
