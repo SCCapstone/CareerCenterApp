@@ -10,11 +10,9 @@ CareerCenterApp::Application.routes.draw do
   resources :employers
 
   #Google+ login support
+  get "login" => "sessions#new", :as => "login"
+  get "logout" => "sessions#destroy", :as => "logout"
   resource :sessions, only: [:new, :create, :destroy] , :controller => 'sessions'
-
-
-
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

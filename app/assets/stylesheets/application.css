@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
  */
+
+.brand{
+	margin: 10px;
+}
+
+ul.nav li{
+	margin-top: 10px;
+}
