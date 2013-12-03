@@ -8,6 +8,15 @@ module AuthenticationHelper
 	 def current_user
 	   @current_user ||= User.find(session[:user_id]) unless session[:user_id].nil?
 	 end
+
+	 def admin?
+	 	current_user.role == "admin" if current_user
+	 end
+
+	 # method to check to see if current user created the current object
+	 def creator?
+	 	return false
+	 end
   
   def ensure_signed_in
     unless signed_in?

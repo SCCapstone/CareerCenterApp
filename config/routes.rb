@@ -7,9 +7,11 @@ CareerCenterApp::Application.routes.draw do
 
   resources :tables
 
+  # Suppoert for employer favoriting
+  get "employers/:id/favorite" => "employers#favorite", :as => "favorite"
   resources :employers
 
-  #Google+ login support
+  # Google+ login support
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
   resource :sessions, only: [:new, :create, :destroy] , :controller => 'sessions'

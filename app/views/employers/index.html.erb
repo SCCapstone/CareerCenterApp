@@ -3,6 +3,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Website</th>
       <th>Description</th>
@@ -11,15 +12,26 @@
       <th>Positions</th>
       <th>Table</th>
       <th>Conference</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <% if admin? %>
+        <th></th>
+        <th></th>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
 
   <tbody>
     <% @employers.each do |employer| %>
       <tr>
+        <td>
+          <a href="/employers/<%= employer.id %>/favorite">
+            <% if current_user && !current_user.favorites.nil? && current_user.favorites.include?(employer.id.to_s) %>
+              <span class="glyphicon glyphicon-star"></span>
+            <% else %>
+              <span class="glyphicon glyphicon-star-empty"></span>
+            <% end %>
+          </a>
+        </td>
         <td><%= employer.name %></td>
         <td><%= employer.website %></td>
         <td><%= employer.description %></td>
@@ -28,9 +40,11 @@
         <td><%= employer.positions %></td>
         <td><%= employer.table_id %></td>
         <td><%= employer.conference.name %></td>
-        <td><%= link_to 'Show', employer, {class: "btn btn-default"} %></td>
-        <td><%= link_to 'Edit', edit_employer_path(employer), {class: "btn btn-default"}%></td>
-        <td><%= link_to 'Destroy', employer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <% if admin? %>
+          <td><%= link_to 'Show', employer, {class: "btn btn-default"} %></td>
+          <td><%= link_to 'Edit', edit_employer_path(employer), {class: "btn btn-default"}%></td>
+          <td><%= link_to 'Destroy', employer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

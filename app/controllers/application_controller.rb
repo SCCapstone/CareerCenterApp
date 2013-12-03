@@ -6,4 +6,18 @@ class ApplicationController < ActionController::Base
   #Google+ login auth helper
   include AuthenticationHelper
 
+  # filter for admins
+  def grant_access
+    unless admin?
+      flash[:error] = "You are not authorized to do that!"
+      redirect_to root_path
+    end
+  end
+
+  def logged_in
+  	unless current_user
+			flash[:error] = "You have to be logged in to use that feature!"
+			redirect_to root_path
+		end
+	end
 end
