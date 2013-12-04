@@ -35,7 +35,7 @@ class EmployersController < ApplicationController
   # GET /employers/1
   # GET /employers/1.json
   def show
-    @last_edit = User.find(@employer.last_edit)
+    @last_edit = User.find(@employer.last_edit) if @employer.last_edit
   end
 
   # GET /employers/new
