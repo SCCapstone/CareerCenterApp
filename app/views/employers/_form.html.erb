@@ -63,6 +63,7 @@
     <%= f.label :conference_id %><br>
     <%= f.collection_select :conference_id, Conference.order(:name),:id,:name, include_blank: true, :prompt => "Pick Conference" %>
   </div>
+  <%= f.hidden_field :last_edit, :value => current_user.name %>
   <div class="actions">
     <%= f.submit %>
   </div>
