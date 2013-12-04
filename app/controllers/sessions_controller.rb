@@ -20,7 +20,9 @@ class SessionsController < ApplicationController
         user = User.where(:identifier_url => openid.display_identifier).first
         user ||= User.create(:identifier_url => openid.display_identifier,
                               :email => ax.get_single('http://axschema.org/contact/email'),
-                              :name => ax.get_single('http://axschema.org/namePerson/first') + " " + ax.get_single('http://axschema.org/namePerson/last'))
+                              :name => ax.get_single('http://axschema.org/namePerson/first') + " " + ax.get_single('http://axschema.org/namePerson/last'),
+                              :role => "student",
+                              :favorites => Array.new)
         session[:user_id] = user.id
         if user.name.blank?
           redirect_to(user_additional_info_path(user))

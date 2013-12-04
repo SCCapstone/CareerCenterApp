@@ -1,5 +1,24 @@
 class EmployersController < ApplicationController
-  before_action :set_employer, only: [:show, :edit, :update, :destroy]
+  before_action :set_employer, only: [:show, :edit, :update, :destroy, :favorite]
+  before_action :grant_access, only: [:edit, :update, :destroy, :create]
+  before_action :logged_in, only: [:favorite]
+
+  def favorite
+    current_user.favorites = Array.new if current_user.favorites.nil?
+    if current_user.favorites.include?(@employer.id.to_s)
+      current_user.remove_favorite(@employer.id)
+    else
+      current_user.add_favorite(@employer.id)
+    end
+
+    if current_user.save!
+      flash[:success] = "Favorites list updated"
+      redirect_to @employer
+    else
+      flash[:error] = "Something went wrong!"
+      redirect_to @employer
+    end
+  end
 
   # GET /employers
   # GET /employers.json
