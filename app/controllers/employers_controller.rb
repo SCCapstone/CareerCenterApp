@@ -1,29 +1,35 @@
 class EmployersController < ApplicationController
-  before_action :set_employer, only: [:show, :edit, :update, :destroy, :favorite]
+  before_action :set_employer, only: [:show, :edit, :update, :destroy, :favorite, :defavorite]
   before_action :grant_access, only: [:edit, :update, :destroy, :create]
   before_action :logged_in, only: [:favorite]
 
   def favorite
-    current_user.favorites = Array.new if current_user.favorites.nil?
-    if current_user.favorites.include?(@employer.id.to_s)
-      current_user.remove_favorite(@employer.id)
-    else
-      current_user.add_favorite(@employer.id)
-    end
-
+    current_user.add_favorite(@employer.id)
     if current_user.save!
-      flash[:success] = "Favorites list updated"
-      redirect_to @employer
+      flash[:success] = "Added #{@employer.name} from favorites."
+      redirect_to :back
     else
       flash[:error] = "Something went wrong!"
-      redirect_to @employer
+      redirect_to :back
+    end
+  end
+
+  def defavorite
+    current_user.remove_favorite(@employer.id)
+    if current_user.save!
+      flash[:success] = "Removed #{@employer.name} from favorites."
+      redirect_to :back
+    else
+      flash[:error] = "Something went wrong!"
+      redirect_to :back
     end
   end
 
   # GET /employers
   # GET /employers.json
   def index
-    @employers = Employer.includes(:conference).all
+    @employers = Employer.includes(:conference).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user 
+    @employers ||= Employer.includes(:conference).all
   end
 
   # GET /employers/1
