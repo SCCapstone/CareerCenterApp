@@ -24,13 +24,13 @@
     <% @employers.each do |employer| %>
       <tr>
         <td>
-          <a href="/employers/<%= employer.id %>/favorite">
+          
             <% if current_user && !current_user.favorites.nil? && current_user.favorites.include?(employer.id.to_s) %>
-              <span class="glyphicon glyphicon-star"></span>
+              <a href="/employers/<%= employer.id %>/defavorite"><span class="glyphicon glyphicon-star"></span></a>
             <% else %>
-              <span class="glyphicon glyphicon-star-empty"></span>
+              <a href="/employers/<%= employer.id %>/favorite"><span class="glyphicon glyphicon-star-empty"></span></a>
             <% end %>
-          </a>
+          
         </td>
         <td><%= employer.name %></td>
         <td><%= employer.website %></td>

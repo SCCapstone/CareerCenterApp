@@ -8,7 +8,9 @@ CareerCenterApp::Application.routes.draw do
   resources :tables
 
   # Suppoert for employer favoriting
+  get "employers/favorites" => "employers#index", :favorites => true
   get "employers/:id/favorite" => "employers#favorite", :as => "favorite"
+  get "employers/:id/defavorite" => "employers#defavorite", :as => "defavorite"
   resources :employers
 
   # Google+ login support
