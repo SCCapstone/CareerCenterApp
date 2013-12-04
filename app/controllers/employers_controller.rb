@@ -35,7 +35,6 @@ class EmployersController < ApplicationController
   # GET /employers/1
   # GET /employers/1.json
   def show
-    @last_edit = User.find(@employer.last_edit)
   end
 
   # GET /employers/new
@@ -51,7 +50,6 @@ class EmployersController < ApplicationController
   # POST /employers.json
   def create
     @employer = Employer.new(employer_params)
-    @employer.last_edit = current_user.id
 
     respond_to do |format|
       if @employer.save
@@ -67,7 +65,6 @@ class EmployersController < ApplicationController
   # PATCH/PUT /employers/1
   # PATCH/PUT /employers/1.json
   def update
-    employer_params[:last_edit] = current_user.id
     respond_to do |format|
       if @employer.update(employer_params)
         format.html { redirect_to @employer, notice: 'Employer was successfully updated.' }
