@@ -12,6 +12,17 @@
         </td>
         <td>
           <a href="/employers/<%= employer.id %>"><h3><%= employer.name %> <small><%= employer.location %></small></h3></a>
+          <p class="hidden-lg">
+            <% employer.majors.split(',').each do |major| %>
+              <span class="label label-primary"><%= major.split(' ').map{|x| x[0..2]}.join('') %></span>
+            <% end %>
+          </p>
+          <p class="hidden-lg">
+            <% employer.positions.split(',').each do |pos| %>
+              <span class="label label-default"><%= pos %></span>
+            <% end %>
+          </p>
+          <%= link_to 'More Info', employer, {class: "btn btn-default hidden-lg"} %>
           <p class="visible-lg"><%= employer.description %></p>
         </td>
         <td class="visible-lg">
