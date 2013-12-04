@@ -1,9 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @employer.name %>
-</p>
+<h1><%= @employer.name %></h1>
+
+<p><span class="label label-primary">Computer Science</span> <span class="label label-primary">Computer Engineering</span></p>
+  <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+  <p><strong>Position:</strong> <%= @employer.positions %></p>
+  <p><strong>Location:</strong> Charleston, SC</p>
+  <a href="#"><button type="button" class="btn fair-btn btn-warning btn-lg"><span class="glyphicon glyphicon-star"></span>Favorite</button></a><br>
+  <a href="#"><button type="button" class="btn fair-btn btn-primary btn-lg"><span class="glyphicon glyphicon-bookmark"></span> Website</button></a><br>
 
 <p>
   <strong>Website:</strong>
