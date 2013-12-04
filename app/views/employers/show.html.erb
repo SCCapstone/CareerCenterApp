@@ -1,19 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @employer.name %>
-</p>
+<h1><%= @employer.name %></h1>
 
-<p>
-  <strong>Website:</strong>
-  <%= @employer.website %>
-</p>
+<p><span class="label label-primary">Computer Science</span> <span class="label label-primary">Computer Engineering</span></p>
+  <p><%= @employer.description %></p>
+  <p><strong>Position:</strong> <%= @employer.positions %></p>
+  <p><strong>Location:</strong> <%= @employer.location %></p>
+  <a href="#"><button type="button" class="btn fair-btn btn-warning btn-lg"><span class="glyphicon glyphicon-star"></span>Favorite</button></a><br>
+  <a href="#"><button type="button" class="btn fair-btn btn-primary btn-lg"><span class="glyphicon glyphicon-bookmark"></span> Website</button></a><br>
 
-<p>
-  <strong>Description:</strong>
-  <%= @employer.description %>
-</p>
 
 <p>
   <strong>Majors:</strong>
@@ -47,7 +42,11 @@
 
 <p>
   <strong>Last edit:</strong>
-  <%= @employer.last_edit %>
+  <% if @last_edit %>
+    <%= @last_edit.name %>
+  <% else %>
+    No User Data
+  <% end %>
 </p>
 
 <p>
