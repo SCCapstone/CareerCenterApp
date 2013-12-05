@@ -11,7 +11,7 @@
         <% end %>
         </td>
         <td>
-          <a href="/employers/<%= employer.id %>"><h3><%= employer.name %> <small><%= employer.location %></small></h3></a>
+          <h3><%= employer.name %> <small><%= employer.location %></small></h3>
           <p class="hidden-lg">
             <% employer.majors.split(',').each do |major| %>
               <span class="label label-primary"><%= major.split(' ').map{|x| x[0..2]}.join('') %></span>
@@ -35,11 +35,16 @@
             <span class="label label-default"><%= pos %></span>
           <% end %>
         </td>
+        
 
         <% if admin? %>
           <td><%= link_to 'Show', employer, {class: "btn btn-default"} %></td>
           <td><%= link_to 'Edit', edit_employer_path(employer), {class: "btn btn-default"}%></td>
           <td><%= link_to 'Destroy', employer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <% else %>
+          <td class="visible-lg">
+            <%= link_to 'More Info', employer, {class: "btn btn-default"} %>
+          </td>
         <% end %>
       </tr> 
     <% end %>
@@ -50,4 +55,6 @@
 
 <br>
 
+<% if admin? %>
 <%= link_to 'New Employer', new_employer_path , {class: "btn btn-success"}%>
+<% end %>

@@ -30,9 +30,11 @@
             <li><a href="/employers">All Employers</a></li>
             <li><a href="/employers/favorites">Favorite Employers</a></li>
             <li><a href="#">Search Employers</a></li>
+            <% if admin? %>
             <li class="divider"></li>
             <li><a href="#">Edit Employer</a></li>
             <li><a href="/employers/new">New Employer</a></li>
+            <% end %>
           </ul>
         </li>
       </ul>
@@ -42,8 +44,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %><b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Favorite Employers</a></li>
-              <li><a href="#"><%= current_user.favorites %></a></li>
+              <li><a href="/employers/favorites">Favorite Employers</a></li>
               <li class="divider"></li>
               <li><a href="/logout">Logout</a></li>
             </ul>

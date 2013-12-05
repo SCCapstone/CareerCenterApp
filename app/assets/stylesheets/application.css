@@ -15,3 +15,7 @@
 ul.nav li{
 	margin-top: 10px;
 }
+
+a:hover{
+	text-decoration: none;
+}
