@@ -1,55 +1,60 @@
-<h1>Listing employers</h1>
-
+<h1>Employers</h1>
 <table class="table table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Website</th>
-      <th>Description</th>
-      <th>Majors</th>
-      <th>Email</th>
-      <th>Positions</th>
-      <th>Table</th>
-      <th>Conference</th>
-      <% if admin? %>
-        <th></th>
-        <th></th>
-        <th></th>
-      <% end %>
-    </tr>
-  </thead>
-
   <tbody>
     <% @employers.each do |employer| %>
       <tr>
         <td>
-          
-            <% if current_user && !current_user.favorites.nil? && current_user.favorites.include?(employer.id.to_s) %>
-              <a href="/employers/<%= employer.id %>/defavorite"><span class="glyphicon glyphicon-star"></span></a>
-            <% else %>
-              <a href="/employers/<%= employer.id %>/favorite"><span class="glyphicon glyphicon-star-empty"></span></a>
-            <% end %>
-          
+        <% if current_user && !current_user.favorites.nil? && current_user.favorites.include?(employer.id.to_s) %>
+          <a href="/employers/<%= employer.id %>/defavorite"><button type="button" class="btn fair-btn btn-warning btn-lg"><span class="glyphicon glyphicon-star"></span></button></a>
+        <% else %>
+          <a href="/employers/<%= employer.id %>/favorite"><button type="button" class="btn fair-btn btn-default btn-lg"><span class="glyphicon glyphicon-star-empty"></span></button></a>
+        <% end %>
         </td>
-        <td><%= employer.name %></td>
-        <td><%= employer.website %></td>
-        <td><%= employer.description %></td>
-        <td><%= employer.majors %></td>
-        <td><%= employer.email %></td>
-        <td><%= employer.positions %></td>
-        <td><%= employer.table_id %></td>
-        <td><%= employer.conference.name %></td>
+        <td>
+          <h3><%= employer.name %> <small><%= employer.location %></small></h3>
+          <p class="hidden-lg">
+            <% employer.majors.split(',').each do |major| %>
+              <span class="label label-primary"><%= major.split(' ').map{|x| x[0..2]}.join('') %></span>
+            <% end %>
+          </p>
+          <p class="hidden-lg">
+            <% employer.positions.split(',').each do |pos| %>
+              <span class="label label-default"><%= pos %></span>
+            <% end %>
+          </p>
+          <%= link_to 'More Info', employer, {class: "btn btn-default hidden-lg"} %>
+          <p class="visible-lg"><%= employer.description %></p>
+        </td>
+        <td class="visible-lg">
+          <% employer.majors.split(',').each do |major| %>
+            <span class="label label-primary"><%= major %></span>
+          <% end %>
+        </td>
+        <td class="visible-lg">
+          <% employer.positions.split(',').each do |pos| %>
+            <span class="label label-default"><%= pos %></span>
+          <% end %>
+        </td>
+        
+
         <% if admin? %>
           <td><%= link_to 'Show', employer, {class: "btn btn-default"} %></td>
           <td><%= link_to 'Edit', edit_employer_path(employer), {class: "btn btn-default"}%></td>
           <td><%= link_to 'Destroy', employer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <% else %>
+          <td class="visible-lg">
+            <%= link_to 'More Info', employer, {class: "btn btn-default"} %>
+          </td>
         <% end %>
-      </tr>
+      </tr> 
     <% end %>
   </tbody>
 </table>
+</div>
+
 
 <br>
 
+<% if admin? %>
 <%= link_to 'New Employer', new_employer_path , {class: "btn btn-success"}%>
+<% end %>

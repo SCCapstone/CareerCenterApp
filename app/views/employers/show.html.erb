@@ -1,46 +1,58 @@
 <h1><%= @employer.name %> <small><%= @employer.location %></small></h1>
 
-<p>
-  <% @employer.majors.split(',').each do |major| %>
-    <span class="label label-primary"><%= major %></span>
-  <% end %>
-</p>
-<p>
-  <% @employer.positions.split(',').each do |pos| %>
-    <span class="label label-default"><%= pos %></span>
-  <% end %>
-</p>
-<p><%= @employer.description %></p>
-<a href="#"><button type="button" class="btn fair-btn btn-warning btn-lg"><span class="glyphicon glyphicon-star"></span> Favorite</button></a>
-<a href="<%= @employer.website %>"><button type="button" class="btn fair-btn btn-primary btn-lg"><span class="glyphicon glyphicon-share-alt"></span> Website</button></a>
+<div class="row row-fluid">
+  <div class="col-lg-6">
+    <p>
+      <% @employer.majors.split(',').each do |major| %>
+        <span class="label label-primary"><%= major %></span>
+      <% end %>
+    </p>
+    <p>
+      <% @employer.positions.split(',').each do |pos| %>
+        <span class="label label-default"><%= pos %></span>
+      <% end %>
+    </p>
+    <p><%= @employer.description %></p>
+    <% if current_user && !current_user.favorites.nil? && current_user.favorites.include?(@employer.id.to_s) %>
+      <a href="/employers/<%= @employer.id %>/defavorite"><button type="button" class="btn fair-btn btn-warning btn-lg"><span class="glyphicon glyphicon-star"></span> Defavorite</button></a>
+    <% else %>
+      <a href="/employers/<%= @employer.id %>/favorite"><button type="button" class="btn fair-btn btn-warning btn-lg"><span class="glyphicon glyphicon-star-empty"></span> Favorite</button></a>
+    <% end %>
+    <a href="<%= @employer.website %>"><button type="button" class="btn fair-btn btn-primary btn-lg"><span class="glyphicon glyphicon-share-alt"></span> Website</button></a>
+  </div>
+  <div class="col-lg-6">
+    <p>
+      <strong>Tips:</strong>
+      <%= @employer.tips %>
+    </p>
 
 
-<p>
-  <strong>Tips:</strong>
-  <%= @employer.tips %>
-</p>
+    <p>
+      <strong>Table:</strong>
+      <%= @employer.table_id %>
+    </p>
 
+    <p>
+      <strong>Conference:</strong>
+      <%= @employer.conference.name %>
+    </p>
 
-<p>
-  <strong>Table:</strong>
-  <%= @employer.table_id %>
-</p>
-
-<p>
-  <strong>Conference:</strong>
-  <%= @employer.conference.name %>
-</p>
-
+    <% if admin? %>
+    <p>
+      <strong>Last edit:</strong>
+      <% if @employer.last_edit %>
+        <%= @employer.last_edit %>
+      <% else %>
+        No User Data
+      <% end %>
+    </p>
+    <% end %>
+  </div>
+</div>
+<br/><br/>
 <% if admin? %>
-<p>
-  <strong>Last edit:</strong>
-  <% if @last_edit %>
-    <%= @last_edit.name %>
-  <% else %>
-    No User Data
-  <% end %>
-</p>
+<%= link_to 'Edit', edit_employer_path(@employer), {class: "btn btn-default"}%>
+<%= link_to 'Destroy', @employer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 <% end %>
 
-<%= link_to 'Edit', edit_employer_path(@employer) %> |
-<%= link_to 'Back', employers_path %>
+<%= link_to 'Back', employers_path, {class: "btn btn-default"} %>

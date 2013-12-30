@@ -3,6 +3,7 @@
 <head>
   <title>CareerCenterApp</title>
   <%= javascript_include_tag 'jquery', 'application' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -30,9 +31,11 @@
             <li><a href="/employers">All Employers</a></li>
             <li><a href="/employers/favorites">Favorite Employers</a></li>
             <li><a href="#">Search Employers</a></li>
+            <% if admin? %>
             <li class="divider"></li>
             <li><a href="#">Edit Employer</a></li>
             <li><a href="/employers/new">New Employer</a></li>
+            <% end %>
           </ul>
         </li>
       </ul>
@@ -42,8 +45,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %><b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Favorite Employers</a></li>
-              <li><a href="#"><%= current_user.favorites %></a></li>
+              <li><a href="/employers/favorites">Favorite Employers</a></li>
               <li class="divider"></li>
               <li><a href="/logout">Logout</a></li>
             </ul>
