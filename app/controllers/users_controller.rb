@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :grant_access
+  before_action :grant_access, only: [:index, :new, :create] 
+  before_action :access_url, only: [:show]
+  before_action :edit_access, only: [:edit]
 
   # GET /users
   # GET /users.json
