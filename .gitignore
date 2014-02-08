@@ -19,3 +19,6 @@
 
 # Ignore gemlock file
 Gemfile.lock
+
+#ignore uploads
+/public/uploads/*
