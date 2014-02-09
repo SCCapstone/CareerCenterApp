@@ -59,6 +59,8 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %><b class="caret"></b></a>
             <ul class="dropdown-menu">
+              <li><a href="/users">Users</a></li>
+              <li><a href="/users/<%= current_user.id %>">View Profile</a></li>
               <li><a href="/employers/favorites">Favorite Employers</a></li>
               <li class="divider"></li>
               <li><a href="/logout">Logout</a></li>
@@ -79,11 +81,11 @@
     <center>
       <% flash.each do |name, msg| %>
         <% if name == :error %>
-          <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg %></div>
+          <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg %></div> 
         <% elsif name == :success %>
-          <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg %></div>
+          <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg %></div> 
         <% elsif name == :notice %>
-          <div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg %></div>
+          <div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg %></div> 
         <% end %>
       <% end %>
     </center>
