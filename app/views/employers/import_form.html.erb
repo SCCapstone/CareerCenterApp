@@ -1,0 +1,5 @@
+<%= form_tag("/employers/import_from_csv", multipart: true) do %>
+  <%= label_tag(:q, "Import:") %>
+  <%= file_field_tag 'employers_csv' %>
+  <%= submit_tag("Import") %>
+<% end %>
