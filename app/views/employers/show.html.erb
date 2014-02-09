@@ -5,12 +5,12 @@
     <p>
       <% @employer.majors.split(',').each do |major| %>
         <span class="label label-primary"><%= major %></span>
-      <% end %>
+      <% end if @employer.majors %>
     </p>
     <p>
       <% @employer.positions.split(',').each do |pos| %>
         <span class="label label-default"><%= pos %></span>
-      <% end %>
+      <% end if @employer.positions %>
     </p>
     <p><%= @employer.description %></p>
     <% if current_user && !current_user.favorites.nil? && current_user.favorites.include?(@employer.id.to_s) %>
@@ -34,7 +34,7 @@
 
     <p>
       <strong>Conference:</strong>
-      <%= @employer.conference.name %>
+      <%= @employer.conference.name if @employer.conference%>
     </p>
 
     <% if admin? %>

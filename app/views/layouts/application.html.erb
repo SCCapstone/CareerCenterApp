@@ -7,20 +7,25 @@
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag  "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 <!-- Example Navbar-->
 
 <nav class="navbar navbar-default" role="navigation">
+  <script type="text/javascript">
+    $( function(){
+      $('.dropdown-toggle').dropdown()
+    })
+  </script>
   <div class="container">
-    <div class="navbar-header">
+    <div class="navbar-header" style="margin-bottom: 0px">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img class="brand" src="https://www.parkersearch.com/dashboard/uploads/photos/usc_long1351087132.jpg" align="left" width="200" height="50"></a>
+      <a class="navbar-brand" href="#" style="margin-bottom: 0px"><img class="brand" src="https://www.parkersearch.com/dashboard/uploads/photos/usc_long1351087132.jpg" align="left" width="120" height="30"></a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
@@ -30,14 +35,28 @@
           <ul class="dropdown-menu">
             <li><a href="/employers">All Employers</a></li>
             <li><a href="/employers/favorites">Favorite Employers</a></li>
-            <li><a href="#">Search Employers</a></li>
             <% if admin? %>
             <li class="divider"></li>
-            <li><a href="#">Edit Employer</a></li>
             <li><a href="/employers/new">New Employer</a></li>
             <% end %>
           </ul>
         </li>
+        <li><a href="http://sc.edu/career/">Career Center</a></li>
+        <li><a href="/messages">Messages</a></li>
+        <li><a href="/conferences">Conferences</a></li>
+        <% if admin? %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Admin Tools<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="/conferences/new">New Conference</a></li>
+              <li><a href="/tables/new">New Table</a></li>
+              <li><a href="/tables">Table List</a></li>
+              <li><a href="/users">Users</a></li>
+              <li><a href="/messages/new">New Message</a></li>
+            </ul>
+        </li>
+        <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="navbar-right">
@@ -45,6 +64,8 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %><b class="caret"></b></a>
             <ul class="dropdown-menu">
+              <li><a href="/users">Users</a></li>
+              <li><a href="/users/<%= current_user.id %>">View Profile</a></li>
               <li><a href="/employers/favorites">Favorite Employers</a></li>
               <li class="divider"></li>
               <li><a href="/logout">Logout</a></li>
@@ -65,11 +86,11 @@
     <center>
       <% flash.each do |name, msg| %>
         <% if name == :error %>
-          <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg %></div>
+          <div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg %></div> 
         <% elsif name == :success %>
-          <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg %></div>
+          <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg %></div> 
         <% elsif name == :notice %>
-          <div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg %></div>
+          <div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg %></div> 
         <% end %>
       <% end %>
     </center>
