@@ -12,8 +12,12 @@
  *= require_tree .
  */
 
+body{
+	padding-top: 0;
+}
+
 ul.nav li{
-	margin-top: 10px;
+	margin-top: 0px;
 }
 
 a:hover{
