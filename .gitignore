@@ -21,4 +21,4 @@
 Gemfile.lock
 
 #ignore uploads
-/public/uploads/*
+
