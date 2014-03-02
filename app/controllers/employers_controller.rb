@@ -30,8 +30,8 @@ class EmployersController < ApplicationController
   # GET /employers
   # GET /employers.json
   def index
-    @employers = Employer.includes(:conference).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user 
-    @employers ||= Employer.includes(:conference).all
+    @employers = Employer.includes(:conference).by_conference(@current_con).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user 
+    @employers ||= Employer.includes(:conference).by_conference(@current_con).all
   end
 
   # GET /employers/1
