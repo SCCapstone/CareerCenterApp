@@ -15,12 +15,12 @@
           <p class="hidden-lg">
             <% employer.majors.split(',').each do |major| %>
               <span class="label label-primary"><%= major.split(' ').map{|x| x[0..2]}.join('') %></span>
-            <% end %>
+            <% end unless employer.majors.blank? %>
           </p>
           <p class="hidden-lg">
             <% employer.positions.split(',').each do |pos| %>
               <span class="label label-default"><%= pos %></span>
-            <% end %>
+            <% end unless employer.positions.blank? %>
           </p>
           <%= link_to 'More Info', employer, {class: "btn btn-default hidden-lg"} %>
           <p class="visible-lg"><%= employer.description %></p>
@@ -28,14 +28,13 @@
         <td class="visible-lg">
           <% employer.majors.split(',').each do |major| %>
             <span class="label label-primary"><%= major %></span>
-          <% end %>
+          <% end unless employer.majors.blank? %>
         </td>
         <td class="visible-lg">
           <% employer.positions.split(',').each do |pos| %>
             <span class="label label-default"><%= pos %></span>
-          <% end %>
+          <% end unless employer.positions.blank? %>
         </td>
-        
 
         <% if admin? %>
           <td><%= link_to 'Show', employer, {class: "btn btn-default"} %></td>
