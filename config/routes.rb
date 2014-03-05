@@ -13,6 +13,9 @@ CareerCenterApp::Application.routes.draw do
   get  "employers/:id/defavorite" => "employers#defavorite", :as => "defavorite"
   get  "employers/import_form" => "employers#import_form"
   post "employers/import_from_csv" => "employers#import_from_csv"
+  get "employers/maps/:conferences" => "employers#maps"
+  get "employers/set/:conferences" => "employers#set"
+  get "employers/fest/:conferences" => "employers#fest"
   resources :employers
 
   # Google+ login support
