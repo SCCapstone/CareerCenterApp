@@ -1,6 +1,18 @@
 class ConferencesController < ApplicationController
   before_action :set_conference, only: [:show, :edit, :update, :destroy]
 
+  # Get /conferences/pick or /home or some url 
+  def select_con
+    @conferences = Conference.all
+  end
+
+  def set_session
+    session[:current_con] = params[:con_id] if params[:con_id]
+    redirect_to employers_path
+    #redirect to the emplyoers controller and pass a param that tells ruby we need to filter 
+    #redirect_to :controller => "employers", :action => 'index', :fair => session[:current_con] 
+  end
+
   # GET /conferences
   # GET /conferences.json
   def index
@@ -61,8 +73,6 @@ class ConferencesController < ApplicationController
     end
   end
 
-  
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conference
@@ -71,7 +81,7 @@ class ConferencesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def conference_params
-      params.require(:conference).permit(:name, :location, :description, :last_edit)
+      params.require(:conference).permit(:name, :location, :description, :last_edit) if params[:conference]
     end
 end
-if params:conference== set
+
