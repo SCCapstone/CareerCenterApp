@@ -27,6 +27,16 @@ class EmployersController < ApplicationController
     end
   end
 
+  def maps
+    if params[:conference]== "set" || params[:conference]=="SET"
+      @img_src="assets/maps/set/set.jpg"#define a string that is the path to that source
+    elsif params[:conference]== "fest" || params[:conference]=="FEST"
+      @img_src="path/to/fest_fair_map.jpg"
+    else 
+      @img_src="path/to/default_map.jpg"
+    end
+  end
+
   # GET /employers
   # GET /employers.json
   def index

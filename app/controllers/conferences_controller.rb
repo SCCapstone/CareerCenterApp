@@ -61,6 +61,8 @@ class ConferencesController < ApplicationController
     end
   end
 
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conference
@@ -72,3 +74,4 @@ class ConferencesController < ApplicationController
       params.require(:conference).permit(:name, :location, :description, :last_edit)
     end
 end
+if params:conference== set
