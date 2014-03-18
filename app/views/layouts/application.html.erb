@@ -49,7 +49,7 @@
         </li>
         <li><a href="http://sc.edu/career/">Career Center</a></li>
         <li><a href="/messages">Messages</a></li>
-        <li><a href="/conferences">Conferences</a></li>
+        <li><a href="/conferences/all">Conferences</a></li>
         <% if admin? %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -61,6 +61,7 @@
               <li><a href="/users">Users</a></li>
               <li><a href="/messages/new">New Message</a></li>
               <li><%= link_to "Import from CSV", employers_import_form_path %></li>
+              <li><a href="/conferences">Conferences</a></li>
             </ul>
         </li>
         <% end %>

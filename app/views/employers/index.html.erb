@@ -11,7 +11,7 @@
         <% end %>
         </td>
         <td>
-          <h3><%= employer.name %> <small><%= employer.location %></small></h3>
+          <h3><%= link_to employer.name, employer %> <small><%= employer.location %></small></h3>
           <p class="hidden-lg">
             <% employer.majors.split(',').each do |major| %>
               <span class="label label-primary"><%= major.split(' ').map{|x| x[0..2]}.join('') %></span>
