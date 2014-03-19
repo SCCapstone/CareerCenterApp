@@ -3,10 +3,17 @@ CareerCenterApp::Application.routes.draw do
 
   resources :messages
 
+  get "conferences/select_con" => "conferences#select_con"
+  get "conferences/set_session" => "conferences#set_session"
   resources :conferences
 
   resources :tables
 
+  #support for picking a fair
+  # Either I pass the conference as part of the url and let all urls that start with employers/conf/(anything else)
+  # be picked up by this controler. Which i then use the url in the employers controller to pass the correct employers 
+  # to be rendered. Or, I need a better way of passing the uers fair choice to the controller. 
+  get'employers/conf/' => "employers#index"
   # Suppoert for employer favoriting
   get  "employers/favorites" => "employers#index", :favorites => true
   get  "employers/:id/favorite" => "employers#favorite", :as => "favorite"
@@ -64,7 +71,7 @@ CareerCenterApp::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+   #
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

@@ -1,17 +1,22 @@
 <h1>Employers</h1>
+
 <table class="table table-striped">
   <tbody>
     <% @employers.each do |employer| %>
+     <!-- The code below shold be getting me the conferences for each employer but instead i get an 
+     undefined method 'name' error. Doing employer.conference does return an object in memory however -->
+        
       <tr>
         <td>
-        <% if current_user && !current_user.favorites.nil? && current_user.favorites.include?(employer.id.to_s) %>
+        <% if current_user && !current_user.favorites.nil? && current_user.favorites.include?(employer.id.to_s)   %>
+
           <a href="/employers/<%= employer.id %>/defavorite"><button type="button" class="btn fair-btn btn-warning btn-lg"><span class="glyphicon glyphicon-star"></span></button></a>
         <% else %>
           <a href="/employers/<%= employer.id %>/favorite"><button type="button" class="btn fair-btn btn-default btn-lg"><span class="glyphicon glyphicon-star-empty"></span></button></a>
         <% end %>
         </td>
         <td>
-          <h3><%= employer.name %> <small><%= employer.location %></small></h3>
+          <h3><%= link_to employer.name, employer %> <small><%= employer.location %></small></h3>
           <p class="hidden-lg">
             <% employer.majors.split(',').each do |major| %>
               <span class="label label-primary"><%= major.split(' ').map{|x| x[0..2]}.join('') %></span>
@@ -45,7 +50,7 @@
             <%= link_to 'More Info', employer, {class: "btn btn-default"} %>
           </td>
         <% end %>
-      </tr> 
+      </tr>
     <% end %>
   </tbody>
 </table>
