@@ -40,8 +40,19 @@ class EmployersController < ApplicationController
   # GET /employers
   # GET /employers.json
   def index
-    @employers = Employer.includes(:conference).by_conference(@current_con).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user 
-    @employers ||= Employer.includes(:conference).by_conference(@current_con).all
+   # @employers = Employer.includes(:conference).by_conference(@current_con).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user 
+    #@employers ||= Employer.includes(:conference).by_conference(@current_con).all
+
+    #we check if there is a current_con picked otherwise, we send them to pick a conference page
+    if session[:current_con]
+      @employers = Employer.includes(:conference).by_conference(@current_con).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user 
+      @employers ||= Employer.includes(:conference).where("conference_id = ?", session[:current_con]).by_conference(@current_con).all
+     
+    else
+      redirect_to :controller => "conferences", :action => 'select_con'
+
+    end
+
   end
 
   # GET /employers/1
