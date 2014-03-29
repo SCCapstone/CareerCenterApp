@@ -1,0 +1,10 @@
+<h1>Map - <%= @con[0].conference.name %> </h1>
+<br>
+<%= image_tag @map_image , :width => 1000 , :height => 600 %>
+
+<%= form_tag("/employers/map_upload", multipart: true) do %>
+<%= label_tag(:q, "Upload:") %>
+<%= file_field_tag 'picture' %>
+<%= submit_tag("Upload") %>
+<% end %>
+

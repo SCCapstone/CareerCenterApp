@@ -37,12 +37,31 @@ class EmployersController < ApplicationController
     end
   end
 
+  def map
+      # is used to get the name of the current fair
+     @con = Employer.includes(:conference).where("conference_id = ?", session[:current_con]).all
+     #set the map source 
+     @map_image = '/assets/maps/'+@con[0].conference.name.downcase+'.jpg'
+    
+     
+  end
+
+  def map_upload
+       @con = Employer.includes(:conference).where("conference_id = ?", session[:current_con]).all
+       uploaded_io = params[:picture]
+       uploaded_io.original_filename = @con[0].conference.name.downcase+".jpg"
+
+       File.open(Rails.root.join('app', 'assets', 'images', 'maps', uploaded_io.original_filename), 'wb') do |file|
+        file.write(uploaded_io.read) 
+    end
+        flash[:notice] = "Map saved!"
+        redirect_to :controller => "employers", :action => 'map'
+
+  end
+
   # GET /employers
   # GET /employers.json
   def index
-   # @employers = Employer.includes(:conference).by_conference(@current_con).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user 
-    #@employers ||= Employer.includes(:conference).by_conference(@current_con).all
-
     #we check if there is a current_con picked otherwise, we send them to pick a conference page
     if session[:current_con]
       @employers = Employer.includes(:conference).by_conference(@current_con).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user 
