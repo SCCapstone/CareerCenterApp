@@ -1,11 +1,10 @@
 <h1>Employers</h1>
-
 <table class="table table-striped">
   <tbody>
     <% @employers.each do |employer| %>
      <!-- The code below shold be getting me the conferences for each employer but instead i get an 
      undefined method 'name' error. Doing employer.conference does return an object in memory however -->
-        
+       
       <tr>
         <td>
         <% if current_user && !current_user.favorites.nil? && current_user.favorites.include?(employer.id.to_s)   %>

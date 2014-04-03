@@ -21,8 +21,13 @@ CareerCenterApp::Application.routes.draw do
   get  "employers/import_form" => "employers#import_form"
   post "employers/import_from_csv" => "employers#import_from_csv"
   get "employers/maps/:conferences" => "employers#maps"
-  get "employers/set/:conferences" => "employers#set"
-  get "employers/fest/:conferences" => "employers#fest"
+  #get "employers/set/:conferences" => "employers#set"
+  #get "employers/fest/:conferences" => "employers#fest"
+
+  get "employers/map" => "employers#map"
+  post "employers/map_upload" => "employers#map_upload"
+  
+
   resources :employers
 
   # Google+ login support
