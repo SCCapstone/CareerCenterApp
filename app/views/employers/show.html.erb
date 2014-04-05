@@ -21,6 +21,7 @@
     <a href="<%= @employer.website %>"><button type="button" class="btn fair-btn btn-primary btn-lg"><span class="glyphicon glyphicon-share-alt"></span> Website</button></a>
   </div>
   <div class="col-lg-6">
+    <%= image_tag "/uploads/company_logos/#{@employer.logo}" if @employer.logo %>
     <p>
       <strong>Tips:</strong>
       <%= @employer.tips %>
@@ -29,7 +30,7 @@
 
     <p>
       <strong>Table:</strong>
-      <%= @employer.table_id %>
+      <%= @employer.table_s %>
     </p>
 
     <p>

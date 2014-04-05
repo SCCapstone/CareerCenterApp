@@ -98,14 +98,11 @@ class EmployersController < ApplicationController
   # PATCH/PUT /employers/1
   # PATCH/PUT /employers/1.json
   def update
-    binding.pry
     uploaded_io = employer_params[:logo]
 
     File.open(Rails.root.join('public', 'uploads', 'company_logos', uploaded_io.original_filename), 'wb') do |file|
       file.write(uploaded_io.read)
     end
-
-    employer_params[:logo] = uploaded_io.original_filename
 
     respond_to do |format|
       if @employer.update(employer_params)
@@ -129,10 +126,12 @@ class EmployersController < ApplicationController
   end
 
   def import_form
+    @conferences = Conference.all
   end
 
   def import_from_csv
     uploaded_io = params[:employers_csv]
+    conference_id = params[:conference_id]
 
     File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
       file.write(uploaded_io.read)
@@ -154,8 +153,10 @@ class EmployersController < ApplicationController
         Employer.create!({
           name: row[1],
           majors: row[2],
+          table_s: row[0],
+          conference_id: conference_id,
           positions: positions.join(',')
-        }) 
+        })
       end
     end
 
@@ -181,6 +182,6 @@ class EmployersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employer_params
-      params.require(:employer).permit(:name, :website, :description, :majors, :email, :positions, :tips, :created_at, :updated_at, :last_edit, :table_id, :conference_id, :location) if params[:employer]
+      params.require(:employer).permit(:name, :website, :description, :logo, :majors, :email, :positions, :tips, :created_at, :updated_at, :last_edit, :table_id, :conference_id, :location) if params[:employer]
     end
 end

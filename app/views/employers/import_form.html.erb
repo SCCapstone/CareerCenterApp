@@ -1,5 +1,15 @@
 <%= form_tag("/employers/import_from_csv", multipart: true) do %>
-  <%= label_tag(:q, "Import:") %>
+  <%= label_tag('employers_csv', "Import:") %>
   <%= file_field_tag 'employers_csv' %>
+  <br/>
+
+  <%= label_tag('conference_id', "Destination Conference:") %>
+  <br/>
+  <select id='conference_id' name='conference_id'>
+    <% @conferences.each do |con| %>
+      <option value="<%= con.id %>"><%= con.name %></option>
+    <% end %>
+  </select>
+
   <%= submit_tag("Import") %>
 <% end %>
