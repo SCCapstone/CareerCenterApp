@@ -57,7 +57,7 @@ class EmployersController < ApplicationController
   # GET /employers.json
   def index
     #we check if there is a current_con picked otherwise, we send them to pick a conference page
-    if current_con.id
+    if current_con
       @employers = Employer.includes(:conference).by_conference(current_con.id).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user
       @employers ||= Employer.includes(:conference).where("conference_id = ?", current_con.id).by_conference(current_con).all
     else
