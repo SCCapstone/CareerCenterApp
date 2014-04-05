@@ -1,4 +1,4 @@
-<%= form_for(@employer) do |f| %>
+<%= form_for(@employer, multipart: true) do |f| %>
   <% if @employer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@employer.errors.count, "error") %> prohibited this employer from being saved:</h2>
@@ -18,6 +18,10 @@
   <div class="control-group">
     <%= f.label :website %><br>
     <%= f.text_area :website %>
+  </div>
+  <div class="control-group">
+    <%= f.label :logo %><br>
+    <%= f.file_field :logo %>
   </div>
   <div class="control-group">
     <%= f.label :location %><br>

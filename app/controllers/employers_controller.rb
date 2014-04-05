@@ -32,46 +32,37 @@ class EmployersController < ApplicationController
       @img_src="assets/maps/set/set.jpg"#define a string that is the path to that source
     elsif params[:conference]== "fest" || params[:conference]=="FEST"
       @img_src="path/to/fest_fair_map.jpg"
-    else 
+    else
       @img_src="path/to/default_map.jpg"
     end
   end
 
   def map
-      # is used to get the name of the current fair
-     @con = Employer.includes(:conference).where("conference_id = ?", session[:current_con]).all
-     #set the map source 
-     @map_image = '/assets/maps/'+@con[0].conference.name.downcase+'.jpg'
-    
-     
   end
 
   def map_upload
-       @con = Employer.includes(:conference).where("conference_id = ?", session[:current_con]).all
-       uploaded_io = params[:picture]
-       uploaded_io.original_filename = @con[0].conference.name.downcase+".jpg"
+    uploaded_io = params[:map]
 
-       File.open(Rails.root.join('app', 'assets', 'images', 'maps', uploaded_io.original_filename), 'wb') do |file|
-        file.write(uploaded_io.read) 
+    File.open(Rails.root.join('public', 'uploads', 'maps', uploaded_io.original_filename), 'wb') do |file|
+      file.write(uploaded_io.read)
     end
-        flash[:notice] = "Map saved!"
-        redirect_to :controller => "employers", :action => 'map'
 
+    current_con.update_attributes(map: uploaded_io.original_filename)
+
+    flash[:notice] = "Map saved!"
+    redirect_to :controller => "employers", :action => 'map'
   end
 
   # GET /employers
   # GET /employers.json
   def index
     #we check if there is a current_con picked otherwise, we send them to pick a conference page
-    if session[:current_con]
-      @employers = Employer.includes(:conference).by_conference(@current_con).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user 
-      @employers ||= Employer.includes(:conference).where("conference_id = ?", session[:current_con]).by_conference(@current_con).all
-     
+    if current_con.id
+      @employers = Employer.includes(:conference).by_conference(current_con.id).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user
+      @employers ||= Employer.includes(:conference).where("conference_id = ?", current_con.id).by_conference(current_con).all
     else
       redirect_to :controller => "conferences", :action => 'select_con'
-
     end
-
   end
 
   # GET /employers/1
@@ -107,6 +98,15 @@ class EmployersController < ApplicationController
   # PATCH/PUT /employers/1
   # PATCH/PUT /employers/1.json
   def update
+    binding.pry
+    uploaded_io = employer_params[:logo]
+
+    File.open(Rails.root.join('public', 'uploads', 'company_logos', uploaded_io.original_filename), 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+
+    employer_params[:logo] = uploaded_io.original_filename
+
     respond_to do |format|
       if @employer.update(employer_params)
         format.html { redirect_to @employer, notice: 'Employer was successfully updated.' }
