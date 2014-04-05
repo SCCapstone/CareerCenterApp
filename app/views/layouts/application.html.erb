@@ -30,13 +30,6 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Map <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="/employers/set/set">SET Map</a></li>
-            <li><a href="/employers/fest/fest">FEST Map</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employers <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="/employers">All Employers</a></li>
@@ -47,6 +40,7 @@
             <% end %>
           </ul>
         </li>
+        <li><%= link_to "Map", employers_map_path %> </li>
         <li><a href="http://sc.edu/career/">Career Center</a></li>
         <li><a href="/messages">Messages</a></li>
         <li><%= link_to "Conference", conferences_select_con_path %></li>
