@@ -46,12 +46,13 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'thin'
   gem 'dotenv-rails'
+  gem 'pry'
 end
 
 group :production do
-	gem 'unicorn'
-	# Heroku Helper
-	gem 'rails_12factor'
+  gem 'unicorn'
+  # Heroku Helper
+  gem 'rails_12factor'
 end
 
 # Use ActiveModel has_secure_password
