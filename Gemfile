@@ -36,6 +36,8 @@ gem 'jbuilder', '~> 1.2'
 gem "ruby-openid"
 gem "rack-openid"
 
+gem "binding_of_caller"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc'
@@ -47,6 +49,7 @@ group :development, :test do
   gem 'thin'
   gem 'dotenv-rails'
   gem 'pry'
+  gem "better_errors"
 end
 
 group :production do

@@ -5,6 +5,13 @@ class EmployersController < ApplicationController
   before_action :grant_access, only: [:edit, :update, :destroy, :create, :import_form, :import_from_csv]
   before_action :logged_in, only: [:favorite]
 
+  def landing
+    redirect_to conferences_select_con_path if current_user
+  end
+
+  def about_us
+  end
+
   def favorite
     current_user.add_favorite(@employer.id)
     if current_user.save!
@@ -57,7 +64,7 @@ class EmployersController < ApplicationController
   # GET /employers.json
   def index
     #we check if there is a current_con picked otherwise, we send them to pick a conference page
-    if current_con.id
+    if current_con
       @employers = Employer.includes(:conference).by_conference(current_con.id).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user
       @employers ||= Employer.includes(:conference).where("conference_id = ?", current_con.id).by_conference(current_con).all
     else
@@ -98,14 +105,11 @@ class EmployersController < ApplicationController
   # PATCH/PUT /employers/1
   # PATCH/PUT /employers/1.json
   def update
-    binding.pry
     uploaded_io = employer_params[:logo]
 
     File.open(Rails.root.join('public', 'uploads', 'company_logos', uploaded_io.original_filename), 'wb') do |file|
       file.write(uploaded_io.read)
-    end
-
-    employer_params[:logo] = uploaded_io.original_filename
+    end unless employer_params[:logo].blank?
 
     respond_to do |format|
       if @employer.update(employer_params)
@@ -129,10 +133,12 @@ class EmployersController < ApplicationController
   end
 
   def import_form
+    @conferences = Conference.all
   end
 
   def import_from_csv
     uploaded_io = params[:employers_csv]
+    conference_id = params[:conference_id]
 
     File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
       file.write(uploaded_io.read)
@@ -154,8 +160,10 @@ class EmployersController < ApplicationController
         Employer.create!({
           name: row[1],
           majors: row[2],
+          table_s: row[0],
+          conference_id: conference_id,
           positions: positions.join(',')
-        }) 
+        })
       end
     end
 
@@ -181,6 +189,6 @@ class EmployersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employer_params
-      params.require(:employer).permit(:name, :website, :description, :majors, :email, :positions, :tips, :created_at, :updated_at, :last_edit, :table_id, :conference_id, :location) if params[:employer]
+      params.require(:employer).permit(:name, :website, :description, :logo, :majors, :email, :positions, :tips, :created_at, :updated_at, :last_edit, :table_id, :conference_id, :location) if params[:employer]
     end
 end

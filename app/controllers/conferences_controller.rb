@@ -73,6 +73,10 @@ class ConferencesController < ApplicationController
     end
   end
 
+  def each
+    @conference = Conference.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_conference

@@ -8,4 +8,4 @@ CareerCenter App
 
 Producition App
 ===============
-https://stormy-mesa-3110.herokuapp.com/
+https://careercenterapp.herokuapp.com/
