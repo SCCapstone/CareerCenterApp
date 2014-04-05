@@ -53,11 +53,13 @@
     <% end %>
   </tbody>
 </table>
-</div>
-
-
 <br>
 
 <% if admin? %>
 <%= link_to 'New Employer', new_employer_path , {class: "btn btn-success"}%>
+<%= link_to 'Import CSV', employers_import_form_path , {class: "btn btn-success"} %>
 <% end %>
+</div>
+
+
+
