@@ -1,13 +1,15 @@
 <h1>Listing messages</h1>
 
-<table>
+<table style="font-size:20px;">
   <thead>
     <tr>
-      <th>To</th>
-      <th>From</th>
-      <th>From role</th>
-      <th>Read</th>
-      <th>Content</th>
+      <% if admin? %>
+        <th>To</th>  
+        <th>From</th>
+        <th>From role</th>
+        <th>Read</th>     
+        <th>Content</th>
+      <% end %>         
       <th></th>
       <th></th>
       <th></th>
@@ -17,19 +19,24 @@
   <tbody>
     <% @messages.each do |message| %>
       <tr>
-        <td><%= message.to %></td>
-        <td><%= message.from %></td>
-        <td><%= message.from_role %></td>
-        <td><%= message.read %></td>
-        <td><%= message.content %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if admin? %>
+          <td><%= message.to %></td>        
+          <td><%= message.from %></td>        
+          <td><%= message.from_role %></td>
+          <td><%= message.read %></td>
+        <% end %>
+        <td style="font-size:20px; padding:10px"><%= message.content %></td>
+        <% if admin? %>
+          <td><%= link_to 'Show', message, {class: 'btn btn-info btn-sm'} %></td>
+          <td><%= link_to 'Edit', edit_message_path(message), {class: 'btn btn-info btn-sm'} %></td>
+          <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Message', new_message_path %>
+<% if admin? %>
+  <%= link_to 'New Message', new_message_path, {class: 'btn btn-success'} %>
+<% end %>

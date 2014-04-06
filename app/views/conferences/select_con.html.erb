@@ -3,8 +3,10 @@
 to the users choice , then load that fair -->
 <% @conferences.each do |conference| %>
   <div>
- <%= link_to conference.name, action: :set_session, con_id: conference.id %>
-  </dvi>
+ 	<span class="btn btn-info btn-lg">
+ 		<%= link_to conference.name, action: :set_session, con_id: conference.id %>
+  	</span>
+  </div>
 <br>
 
 <% end %>

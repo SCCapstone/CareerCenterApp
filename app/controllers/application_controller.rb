@@ -55,8 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_con
-    @current_con = session[:current_con]
-    #@con = Employer.includes(:conference).where("conference_id = ?", session[:current_con]).all
+    @current_con ||= Conference.find(session[:current_con]) if session[:current_con]
   end
 
   def logged_in
