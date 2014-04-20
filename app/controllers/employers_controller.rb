@@ -102,7 +102,7 @@ class EmployersController < ApplicationController
 
     File.open(Rails.root.join('public', 'uploads', 'company_logos', uploaded_io.original_filename), 'wb') do |file|
       file.write(uploaded_io.read)
-    end
+    end unless employer_params[:logo].blank?
 
     respond_to do |format|
       if @employer.update(employer_params)
