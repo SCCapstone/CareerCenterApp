@@ -21,6 +21,8 @@ CareerCenterApp::Application.routes.draw do
   get  "employers/import_form" => "employers#import_form"
   post "employers/import_from_csv" => "employers#import_from_csv"
   get  "employers/maps/:conferences" => "employers#maps"
+  get  "employers/landing" => "employers#landing", :as => "landing"
+  get  "employers/about_us" => "employers#about_us", :as => "about_us"
 
   get  "employers/map" => "employers#map"
   post "employers/map_upload" => "employers#map_upload"

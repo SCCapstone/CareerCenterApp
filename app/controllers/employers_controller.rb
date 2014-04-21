@@ -5,6 +5,13 @@ class EmployersController < ApplicationController
   before_action :grant_access, only: [:edit, :update, :destroy, :create, :import_form, :import_from_csv]
   before_action :logged_in, only: [:favorite]
 
+  def landing
+    redirect_to conferences_select_con_path if current_user
+  end
+
+  def about_us
+  end
+
   def favorite
     current_user.add_favorite(@employer.id)
     if current_user.save!
