@@ -3,6 +3,7 @@ class Employer < ActiveRecord::Base
   has_one :table
   before_save :clean_logo
 
+  default_scope {order('name')}
   scope :by_conference, ->(con_id) {where(conference_id: con_id) if con_id}
 
   private
