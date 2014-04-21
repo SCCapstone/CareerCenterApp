@@ -45,6 +45,10 @@ class EmployersController < ApplicationController
   end
 
   def map
+    #we redirect the user to select_con if no fair has been set
+    unless current_con
+      redirect_to :controller => "conferences", :action => 'select_con'
+    end
   end
 
   def map_upload
@@ -79,7 +83,12 @@ class EmployersController < ApplicationController
 
   # GET /employers/new
   def new
-    @employer = Employer.new
+    if current_con
+      @employer = Employer.new   
+    else
+      redirect_to :controller => "conferences", :action => 'select_con'
+    end
+    
   end
 
   # GET /employers/1/edit
