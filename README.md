@@ -1,11 +1,23 @@
-CareerCenter App
+Career Center Companion
 =================
-* 6 November 2013 - Had a javascript error with turbolinks and installed nodejs to fix the issue
-* 6 November 2013 - Andrew's computer is now able to work by installing a execjs gem and nodejs
-* 6 November 2013 - Navaid had to add the .env file to my local repo to connect to the app
-* 6 November 2013 - Installed bootstrap and connected some of the models in the CRUD 
-* 13 November 2013 - Creating development branch
+The career center companion is an easy to use application that will house all information about a given career fair.
 
 Producition App
 ===============
 https://careercenterapp.herokuapp.com/
+
+To Run
+======
+Downlaod and install Ruby. Download the application, run `bundle install` and make sure this command finishes without error. 
+
+The application will be looking for a `.env` file. This file is expected to contain the following:
+```
+RACK_ENV=development
+DB_UN= ***
+DB_PW= ***
+```
+The database username and password are dependent on where you setup your database. To change the location of the database update the `database.yml` to specify the location of your development database.
+
+To start the application on OS X run, `foreman start`. To start on Windows run, `thin start`.
+
+To deploy, set up the application on heroku and run `git push heroku master`.
