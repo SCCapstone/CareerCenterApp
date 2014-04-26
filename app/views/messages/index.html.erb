@@ -4,10 +4,12 @@
   <thead>
     <tr>
       <% if admin? %>
+        <!--
         <th>To</th>  
         <th>From</th>
         <th>From role</th>
         <th>Read</th>     
+      -->
         <th>Content</th>
       <% end %>         
       <th></th>
@@ -20,10 +22,12 @@
     <% @messages.each do |message| %>
       <tr>
         <% if admin? %>
+        <!--
           <td><%= message.to %></td>        
           <td><%= message.from %></td>        
           <td><%= message.from_role %></td>
           <td><%= message.read %></td>
+        -->
         <% end %>
         <td style="font-size:20px; padding:10px"><%= message.content %></td>
         <% if admin? %>
