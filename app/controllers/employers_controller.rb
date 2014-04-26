@@ -65,7 +65,7 @@ class EmployersController < ApplicationController
   def index
     #we check if there is a current_con picked otherwise, we send them to pick a conference page
     if current_con
-      @employers = Employer.includes(:conference).by_conference(current_con.id).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user
+      @employers = Employer.includes(:conference).by_conference(current_con.id).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user && !current_user.favorites.empty?
       @employers ||= Employer.includes(:conference).where("conference_id = ?", current_con.id).by_conference(current_con).all
     else
       redirect_to :controller => "conferences", :action => 'select_con'
@@ -125,6 +125,12 @@ class EmployersController < ApplicationController
   # DELETE /employers/1
   # DELETE /employers/1.json
   def destroy
+    User.where("'#{@employer.id}' = ANY (favorites)").each do |u|
+      u.remove_favorite(@employer.id)
+      u.save
+    end
+
+
     @employer.destroy
     respond_to do |format|
       format.html { redirect_to employers_url }
