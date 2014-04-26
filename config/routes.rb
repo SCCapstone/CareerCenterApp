@@ -21,6 +21,8 @@ CareerCenterApp::Application.routes.draw do
   get  "employers/import_form" => "employers#import_form"
   post "employers/import_from_csv" => "employers#import_from_csv"
   get  "employers/maps/:conferences" => "employers#maps"
+  get  "employers/landing" => "employers#landing", :as => "landing"
+  get  "employers/about_us" => "employers#about_us", :as => "about_us"
 
   get  "employers/map" => "employers#map"
   post "employers/map_upload" => "employers#map_upload"
@@ -37,7 +39,7 @@ CareerCenterApp::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'employers#index'
+   root 'employers#landing'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

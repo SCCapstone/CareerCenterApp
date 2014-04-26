@@ -1,23 +1,23 @@
 #Google+ authentication helper
 
 module AuthenticationHelper
-	def signed_in?
-		!session[:user_id].nil?
-	end
+  def signed_in?
+    !session[:user_id].nil?
+  end
 
-	 def current_user
-	   @current_user ||= User.find(session[:user_id]) unless session[:user_id].nil?
-	 end
+  def current_user
+    @current_user ||= User.find(session[:user_id]) unless session[:user_id].nil?
+  end
 
-	 def admin?
-	 	current_user.role == "admin" if current_user
-	 end
+  def admin?
+    current_user.role == "admin" if current_user
+  end
 
-	 # method to check to see if current user created the current object
-	 def creator?
-	 	return false
-	 end
-  
+  # method to check to see if current user created the current object
+  def creator?
+    return false
+  end
+
   def ensure_signed_in
     unless signed_in?
       session[:redirect_to] = request.request_uri

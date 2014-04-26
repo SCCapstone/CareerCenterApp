@@ -2,9 +2,6 @@
 <table class="table table-striped">
   <tbody>
     <% @employers.each do |employer| %>
-     <!-- The code below shold be getting me the conferences for each employer but instead i get an 
-     undefined method 'name' error. Doing employer.conference does return an object in memory however -->
-       
       <tr>
         <td>
         <% if current_user && !current_user.favorites.nil? && current_user.favorites.include?(employer.id.to_s)   %>
@@ -51,13 +48,20 @@
         <% end %>
       </tr>
     <% end %>
+    <tr>
+      <p>
+       *Southeast Refers to: TN, GA, LA, AL, FL, SC, AR, KY, MS
+      </p>
+    </tr>
   </tbody>
 </table>
-</div>
-
-
 <br>
 
 <% if admin? %>
 <%= link_to 'New Employer', new_employer_path , {class: "btn btn-success"}%>
+<%= link_to 'Import CSV', employers_import_form_path , {class: "btn btn-success"} %>
 <% end %>
+</div>
+
+
+
