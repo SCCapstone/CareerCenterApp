@@ -1,8 +1,5 @@
 <h1>Employers</h1>
 <table class="table table-striped">
-   <%for i in 0..3%>
-        <% flash[:notice] <<= "msg.text" + i.to_s + "\n"%>
-   <% end %>
   <tbody>
     <% @employers.each do |employer| %>
       <tr>
