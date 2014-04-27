@@ -7,6 +7,17 @@
  */
 
 /*! normalize.css v2.1.3 | MIT License | git.io/normalize */
+.logos{
+  width: 200px;
+  height: 200px;
+  }
+
+  .maps
+  {
+    width: 99%;
+    border: solid;
+  }
+
 
 article,
 aside,

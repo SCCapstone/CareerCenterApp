@@ -1,6 +1,8 @@
 <h1>Map - <%= current_con.name %> </h1>
 <br>
-<%= image_tag "/uploads/maps/#{current_con.map}" %>
+<div id = "map_container">
+<%= image_tag("/uploads/maps/#{current_con.map}", class: "maps") %>
+</div>
 
 <% if current_user && admin? %>
   <%= form_tag("/employers/map_upload", multipart: true) do %>
