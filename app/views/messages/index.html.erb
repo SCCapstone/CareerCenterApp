@@ -4,15 +4,9 @@
   <thead>
     <tr>
       <% if admin? %>
-        <!--
-        <th>To</th>  
-        <th>From</th>
-        <th>From role</th>
-        <th>Read</th>     
-      -->
         <th>Expires</th>
         <th>Content</th>
-      <% end %>         
+      <% end %>
       <th></th>
       <th></th>
       <th></th>
@@ -24,13 +18,13 @@
       <tr>
         <% if admin? %>
         <!--
-          <td><%= message.to %></td>        
-          <td><%= message.from %></td>        
+          <td><%= message.to %></td>
+          <td><%= message.from %></td>
           <td><%= message.from_role %></td>
           <td><%= message.read %></td>
         -->
         <% end %>
-         <td><%= message.expiration.to_s("hh:mm:ss tt") %></td>
+         <td><%= message.expiration.strftime("%m/%d/%Y %I:%M%p") %></td>
         <td style="font-size:20px; padding:10px"><%= message.content %></td>
         <% if admin? %>
           <td><%= link_to 'Show', message, {class: 'btn btn-info btn-sm'} %></td>
@@ -38,7 +32,7 @@
           <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
         <% end %>
       </tr>
-    <% end %>
+      <% end if @messages.count > 0 %>
   </tbody>
 </table>
 
