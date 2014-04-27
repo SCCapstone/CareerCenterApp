@@ -164,9 +164,14 @@ class EmployersController < ApplicationController
         positions << "Day After Fair Interviews" unless row[10].nil? || row[10].empty?
 
         Employer.create!({
+          table_s: row[0],
           name: row[1],
           majors: row[2],
-          table_s: row[0],
+          description: row[11] || "",
+          website: row[12] || "",
+          location: row[13] || "",
+          tips: row[14] || "",
+          email: row[15] || "",
           conference_id: conference_id,
           positions: positions.join(',')
         })
