@@ -1,9 +1,15 @@
+<%= @messages.each do |msg| %> 
+  <% if (Time.now <= (msg.expiration + 4.hour)) %> 
+    <div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg.content %></div> 
+  <% end %>
+<% end %>
+
 <h1>Employers</h1>
 <table class="table table-striped">
   <tbody>
     <% @employers.each do |employer| %>
       <tr>
-        <td>
+        <td class="emplyoers">
         <% if current_user && !current_user.favorites.nil? && current_user.favorites.include?(employer.id.to_s)   %>
 
           <a href="/employers/<%= employer.id %>/defavorite"><button type="button" class="btn fair-btn btn-warning btn-lg"><span class="glyphicon glyphicon-star"></span></button></a>

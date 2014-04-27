@@ -10,6 +10,10 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
+    
+    @Ctime = Time.now
+
+
   end
 
   # GET /messages/new
@@ -69,6 +73,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:to, :from, :from_role, :read, :content)
+      params.require(:message).permit(:to, :from, :from_role, :read, :content, :expiration)
     end
 end

@@ -10,6 +10,7 @@
         <th>From role</th>
         <th>Read</th>     
       -->
+        <th>Expires</th>
         <th>Content</th>
       <% end %>         
       <th></th>
@@ -29,6 +30,7 @@
           <td><%= message.read %></td>
         -->
         <% end %>
+         <td><%= message.expiration.to_s("hh:mm:ss tt") %></td>
         <td style="font-size:20px; padding:10px"><%= message.content %></td>
         <% if admin? %>
           <td><%= link_to 'Show', message, {class: 'btn btn-info btn-sm'} %></td>

@@ -74,9 +74,6 @@ class EmployersController < ApplicationController
       # latest messages for the past 5 mintues, and alert message 
       #we check if there is a current_con picked otherwise, we send them to pick a conference page
       @messages = Message.all
-      for i in 0..3
-        #flash[:notice] = "msg.text" + i.to_s
-      end
     else
       redirect_to :controller => "conferences", :action => 'select_con'
     end
