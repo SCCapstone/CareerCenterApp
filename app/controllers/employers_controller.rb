@@ -72,7 +72,7 @@ class EmployersController < ApplicationController
       @employers ||= Employer.includes(:conference).where("conference_id = ?", current_con.id).by_conference(current_con).all
       # latest messages for the past 5 mintues, and alert message 
       #we check if there is a current_con picked otherwise, we send them to pick a conference page
-      @messages = Message.all
+      @messages = Message.where("expiration > ?", Time.now)
     else
       redirect_to :controller => "conferences", :action => 'select_con'
     end
