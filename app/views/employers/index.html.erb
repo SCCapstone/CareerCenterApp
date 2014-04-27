@@ -7,7 +7,7 @@
   <tbody>
     <% @employers.each do |employer| %>
       <tr>
-        <td class="emplyoers">
+        <td class="employers">
         <% if current_user && !current_user.favorites.nil? && current_user.favorites.include?(employer.id.to_s)   %>
 
           <a href="/employers/<%= employer.id %>/defavorite"><button type="button" class="btn fair-btn btn-warning btn-lg"><span class="glyphicon glyphicon-star"></span></button></a>
@@ -26,6 +26,7 @@
             <% employer.positions.split(',').each do |pos| %>
               <span class="label label-default"><%= pos %></span>
             <% end unless employer.positions.blank? %>
+
           </p>
           <%= link_to 'More Info', employer, {class: "btn btn-default hidden-lg"} %>
           <p class="visible-lg"><%= employer.description %></p>
