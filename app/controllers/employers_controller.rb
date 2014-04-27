@@ -45,6 +45,10 @@ class EmployersController < ApplicationController
   end
 
   def map
+    #we redirect the user to select_con if no fair has been set
+    unless current_con
+      redirect_to :controller => "conferences", :action => 'select_con'
+    end
   end
 
   def map_upload
@@ -63,10 +67,12 @@ class EmployersController < ApplicationController
   # GET /employers
   # GET /employers.json
   def index
-    #we check if there is a current_con picked otherwise, we send them to pick a conference page
     if current_con
       @employers = Employer.includes(:conference).by_conference(current_con.id).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user && !current_user.favorites.empty?
       @employers ||= Employer.includes(:conference).where("conference_id = ?", current_con.id).by_conference(current_con).all
+      # latest messages for the past 5 mintues, and alert message 
+      #we check if there is a current_con picked otherwise, we send them to pick a conference page
+      @messages = Message.all
     else
       redirect_to :controller => "conferences", :action => 'select_con'
     end
@@ -79,7 +85,12 @@ class EmployersController < ApplicationController
 
   # GET /employers/new
   def new
-    @employer = Employer.new
+    if current_con
+      @employer = Employer.new   
+    else
+      redirect_to :controller => "conferences", :action => 'select_con'
+    end
+    
   end
 
   # GET /employers/1/edit

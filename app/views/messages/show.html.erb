@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<!--
 <p>
   <strong>To:</strong>
   <%= @message.to %>
@@ -19,6 +19,26 @@
   <strong>Read:</strong>
   <%= @message.read %>
 </p>
+-->
+
+<p>
+  <strong> Compare:</strong> 
+  Current time > Expire: <%= (Time.now >= @message.expiration + 4.hour)  %> 
+ 
+</p>
+
+<p>
+  <strong> Expires:</strong>
+  <% if @message.expiration  %>
+  <%= @message.expiration %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Created_at:</strong>
+  <%= @message.created_at %>
+</p>
+
 
 <p>
   <strong>Content:</strong>
