@@ -21,7 +21,7 @@
   </div>
   <div class="control-group">
     <% unless @employer.logo.blank? %>
-    <%= image_tag "/uploads/company_logos/#{@employer.logo}" %>
+    <%= image_tag "/uploads/company_logos/#{@employer.logo}" , class: "logos" %>
     <% end %>
     <br/>
     <p>Choose a new file to add logo or replace current.</p>
