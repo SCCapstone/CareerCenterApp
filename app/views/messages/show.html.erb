@@ -20,25 +20,23 @@
   <%= @message.read %>
 </p>
 -->
-
+ <% if @message.expiration  %>
 <p>
-  <strong> Compare:</strong> 
-  Current time > Expire: <%= (Time.now >= @message.expiration + 4.hour)  %> 
- 
+  <strong> Expired:</strong> 
+  <%= (Time.now >= @message.expiration + 4.hour) %> 
 </p>
 
 <p>
   <strong> Expires:</strong>
-  <% if @message.expiration  %>
   <%= @message.expiration %>
-  <% end %>
 </p>
-
+  <% end %>
+<!--
 <p>
   <strong>Created_at:</strong>
   <%= @message.created_at %>
 </p>
-
+-->
 
 <p>
   <strong>Content:</strong>

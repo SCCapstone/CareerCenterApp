@@ -1,5 +1,10 @@
-<% @messages.each do |msg| %> 
- <div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg.content %></div> 
+<% if !@messages.nil? %>
+  <% @messages.each do |msg| %>
+
+   <% if !msg.expiration.nil? && (Time.now <= msg.expiration + 4.hour) %> 
+    <div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><%= msg.content %></div> 
+    <% end %>
+  <% end %>
 <% end %>
 
 <h1>Employers</h1>
