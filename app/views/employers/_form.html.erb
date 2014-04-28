@@ -21,7 +21,7 @@
   </div>
   <div class="control-group">
     <% unless @employer.logo.blank? %>
-    <%= image_tag "/uploads/company_logos/#{@employer.logo}" %>
+    <%= image_tag "/uploads/company_logos/#{@employer.logo}" , class: "logos" %>
     <% end %>
     <br/>
     <p>Choose a new file to add logo or replace current.</p>
@@ -58,7 +58,7 @@
   </div>
   <div class="control-group">
     <%= f.label :conference_id %><br>
-    <%= f.collection_select :conference_id, Conference.order(:name),:id,:name, include_blank: true, :prompt => "Pick Conference" %>
+    <%= f.collection_select :conference_id, Conference.order(:name),:id,:name, include_blank: false, :prompt => "Pick Conference" %>
   </div>
   <%= f.hidden_field :last_edit, :value => current_user.name %>
   <div class="actions">

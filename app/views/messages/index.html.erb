@@ -16,14 +16,6 @@
   <tbody>
     <% @messages.each do |message| %>
       <tr>
-        <% if admin? %>
-        <!--
-          <td><%= message.to %></td>
-          <td><%= message.from %></td>
-          <td><%= message.from_role %></td>
-          <td><%= message.read %></td>
-        -->
-        <% end %>
          <td><%= message.expiration.strftime("%m/%d/%Y %I:%M%p") %></td>
         <td style="font-size:20px; padding:10px"><%= message.content %></td>
         <% if admin? %>
