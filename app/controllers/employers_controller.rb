@@ -70,9 +70,7 @@ class EmployersController < ApplicationController
     if current_con
       @employers = Employer.includes(:conference).by_conference(current_con.id).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user && !current_user.favorites.empty?
       @employers ||= Employer.includes(:conference).where("conference_id = ?", current_con.id).by_conference(current_con).all
-     
-     #Corey, we can't querey the database and just do an expiration date check. Time.now is in UTC, exp is in the individuals current time zone. 
-      @messages = Message.all
+      @messages = Message.where("created_at > ?", Time.now - 4.hours)
     else
       redirect_to :controller => "conferences", :action => 'select_con'
     end
@@ -86,11 +84,10 @@ class EmployersController < ApplicationController
   # GET /employers/new
   def new
     if current_con
-      @employer = Employer.new   
+      @employer = Employer.new
     else
       redirect_to :controller => "conferences", :action => 'select_con'
     end
-    
   end
 
   # GET /employers/1/edit
