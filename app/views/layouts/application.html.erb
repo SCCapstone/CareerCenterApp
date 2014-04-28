@@ -43,22 +43,24 @@
         <li><%= link_to "Map", employers_map_path %> </li>
         <li><a href="http://sc.edu/career/">Career Center</a></li>
         <li><a href="/messages">Messages</a></li>
-        <li><%= link_to "Conference", conferences_select_con_path %></li>
         <% if current_con %>
-          <li><%= link_to  current_con.name, conferences_select_con_path %></li>
+          <li><%= link_to  "Fair:"+ current_con.name, conferences_select_con_path %></li>
+        <% else %>
+          <li><%= link_to "Job Fairs", conferences_select_con_path %></li>
         <% end %>
         <% if admin? %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             Admin Tools<b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="/conferences/new">New Conference</a></li>
-              <li><a href="/tables/new">New Table</a></li>
-              <li><a href="/tables">Table List</a></li>
               <li><a href="/users">Users</a></li>
+              <li><a href="/conferences">Fairs</a></li>
+              <li><a href="/conferences/new">New Fair</a></li>
               <li><a href="/messages/new">New Message</a></li>
+            <!--  <li><a href="/tables/new">New Table</a></li>
+              <li><a href="/tables">Table List</a></li> -->
+             
               <li><%= link_to "Import from CSV", employers_import_form_path %></li>
-              <li><a href="/conferences">Conferences</a></li>
             </ul>
         </li>
         <% end %>
@@ -98,7 +100,6 @@
         <% end %>
       <% end %>
     </center>
-
 		<%= yield %>
 	</div>
 </body>

@@ -1,45 +1,15 @@
 <p id="notice"><%= notice %></p>
-<!--
-<p>
-  <strong>To:</strong>
-  <%= @message.to %>
-</p>
+ <% if @message.expiration  %>
+    <p>
+      <strong> Expired:</strong> 
+      <%= (Time.now >= @message.expiration + 4.hour) %> 
+    </p>
 
-<p>
-  <strong>From:</strong>
-  <%= @message.from %>
-</p>
-
-<p>
-  <strong>From role:</strong>
-  <%= @message.from_role %>
-</p>
-
-<p>
-  <strong>Read:</strong>
-  <%= @message.read %>
-</p>
--->
-
-<p>
-  <strong> Compare:</strong> 
-  Current time > Expire: <%= (Time.now >= @message.expiration + 4.hour)  %> 
- 
-</p>
-
-<p>
-  <strong> Expires:</strong>
-  <% if @message.expiration  %>
-  <%= @message.expiration %>
+    <p>
+      <strong> Expires:</strong>
+      <%= @message.expiration %>
+    </p>
   <% end %>
-</p>
-
-<p>
-  <strong>Created_at:</strong>
-  <%= @message.created_at %>
-</p>
-
-
 <p>
   <strong>Content:</strong>
   <%= @message.content %>

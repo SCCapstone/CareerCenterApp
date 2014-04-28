@@ -18,7 +18,9 @@
     <% else %>
       <a href="/employers/<%= @employer.id %>/favorite"><button type="button" class="btn fair-btn btn-default btn-lg"><span class="glyphicon glyphicon-star-empty"></span> Favorite</button></a>
     <% end %>
-    <a href="<%= @employer.website %>"><button type="button" class="btn fair-btn btn-primary btn-lg"><span class="glyphicon glyphicon-share-alt"></span> Website</button></a>
+    <% if !@employer.website.nil? %>
+    <a href="http://<%= @employer.website %>"><button type="button" class="btn fair-btn btn-primary btn-lg"><span class="glyphicon glyphicon-share-alt"></span> Website</button></a>
+    <% end %> 
   </div>
   <div class="col-lg-6">
     <% unless @employer.logo.blank? %>
