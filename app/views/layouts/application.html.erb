@@ -43,6 +43,8 @@
         <li><%= link_to "Map", employers_map_path %> </li>
         <li><a href="http://sc.edu/career/">Career Center</a></li>
         <li><a href="/messages">Messages</a></li>
+        <li><%= link_to "Conference", conferences_select_con_path %></li>
+        <li><%= link_to "Directions", "/employers/directions"%></li>
         <% if current_con %>
           <li><%= link_to  "Fair:"+ current_con.name, conferences_select_con_path %></li>
         <% else %>

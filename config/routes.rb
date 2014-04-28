@@ -27,6 +27,8 @@ CareerCenterApp::Application.routes.draw do
   get  "employers/map" => "employers#map"
   post "employers/map_upload" => "employers#map_upload"
 
+  get  "employers/directions" => "employers#directions"
+
   resources :employers
 
   # Google+ login support
