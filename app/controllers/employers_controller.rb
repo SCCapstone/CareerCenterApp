@@ -70,7 +70,7 @@ class EmployersController < ApplicationController
     if current_con
       @employers = Employer.includes(:conference).by_conference(current_con.id).find(current_user.favorites.map(&:to_i)) if params[:favorites] && current_user && !current_user.favorites.empty?
       @employers ||= Employer.includes(:conference).where("conference_id = ?", current_con.id).by_conference(current_con).all
-      @messages = Message.where("created_at > ?", Time.now - 4.hours)
+      @messages = Message.where("expiration > ?", Time.now - 4.hours)
     else
       redirect_to :controller => "conferences", :action => 'select_con'
     end
